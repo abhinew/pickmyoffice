@@ -11,15 +11,13 @@ export function CityWeatherDetails({ city }) {
         (() => {
             setIsLoading(true);
             axios.get(
-                "http://dataservice.accuweather.com/forecasts/v1/daily/1day/2140993?apikey=Pg0NhuXu5jYrqelukGHYQfgYifVdC0P0"
+                "http://dataservice.accuweather.com/forecasts/v1/daily/1day/2140993?apikey=fGnNVl7YewHK0A29n5RncEGAEmO4O8ox"
             ).then(data => {
                 if (isMounted) {
                     console.log(data)
                     setData(data);
                     setIsLoading(false);
                 }
-
-
             }).catch(console.log("err"))
 
         })();
@@ -41,7 +39,7 @@ export function CityWeatherDetails({ city }) {
                     <ul>
                         {data && data.data && data.data && data.data.DailyForecasts.map(item => (
                             <li key={item.id}>
-                                <span>{item.Temperature.Minimum.Value}</span><span>&#8457;</span>
+                                <span>{item.Temperature.Minimum.Value}</span><span>&#8457;</span>/
                                 <span>{item.Temperature.Minimum.Value}</span><span>&#8457;</span>
                             </li>
                         ))}
