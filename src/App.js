@@ -8,7 +8,8 @@ export function App() {
   return (
     <main>
       <Title content="PickMyOffice" />
-      <span>Choose office location on</span><DateContainer /><span>from</span><input type="text" name="fromCity"/>
+      <span>Choose office location on</span><DateContainer /><span>from</span><input type="text" name="fromCity" />
+      <h2>Current Weather</h2>
       <CitiesListContainer />
     </main>
   )
