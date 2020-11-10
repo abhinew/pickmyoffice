@@ -11,7 +11,7 @@ export function CityFlightDetails({ city }) {
         (() => {
             setIsLoading(true);
             axios.get(
-                "https://api.skypicker.com/flights?flyFrom=PRG&to=AMS&dateFrom=06/11/2020&dateTo=06/11/2020&partner=picky&v=3"
+                "https://api.skypicker.com/flights?flyFrom=PRG&to=AMS&dateFrom=11/11/2020&dateTo=11/11/2020&partner=picky&v=3"
             ).then(data => {
                 if (isMounted) {
                     console.log(data)
