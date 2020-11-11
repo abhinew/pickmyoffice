@@ -7,24 +7,18 @@ export function CityWeatherDetails({ city }) {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        let cityKey = city.key;
-        let isMounted = true;
-        (() => {
-            setIsLoading(true);
-            axios.get(
-                "http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + cityKey + "?apikey=vcM8xAfHgr9mYfFW38Ju0NXiI3Bfqdoz"
-            ).then(data => {
-                if (isMounted) {
-                    console.log(data)
-                    setData(data);
-                    setIsLoading(false);
-                }
-            }).catch((e) => {
-                console.log(e)
-            })
+        let key = city.key
+        setIsLoading(true);
+        axios.get(
+            "http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + key + "?apikey=8nObHWIFp1XgeVk4rZJw4rGS0wY1Dsly"
+        ).then(({ data }) => {
+            setData(data);
+            setIsLoading(false);
 
-        })();
-        return () => { isMounted = false; };
+        }).catch((e) => {
+            console.log(e)
+        })
+
     }, []);
 
     return (
@@ -34,9 +28,9 @@ export function CityWeatherDetails({ city }) {
                     <div className="pokemon__name">
                         <p>{city.title}</p>
                     </div>
-                    <p>{data && data.data && data.data.Headline.Text}</p>
+                    <p>{data && data.Headline.Text}</p>
                     <ul>
-                        {data && data.data && data.data && data.data.DailyForecasts.map(item => (
+                        {data && data.DailyForecasts.map(item => (
                             <li key={item.id}>
                                 <span>{item.Temperature.Minimum.Value}</span><span>&#8457;</span>/
                                 <span>{item.Temperature.Minimum.Value}</span><span>&#8457;</span>

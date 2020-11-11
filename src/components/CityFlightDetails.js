@@ -8,11 +8,9 @@ export function CityFlightDetails({ city, airport, fromLoc }) {
 
     useEffect(() => {
         let date = new Date();
-        console.log(date)
-        let todayDate = date.getDate() + "/" + Number(date.getMonth() + 1) + "/" + date.getFullYear();
+        let todayDate = date.getDate() + "/" + Number(date.getMonth() + 2) + "/" + date.getFullYear();
         setIsLoading(true);
         let url = "https://api.skypicker.com/flights?flyFrom=PRG&to=" + airport + "&dateFrom=" + todayDate + "&dateTo=" + todayDate + "&partner=picky&v=3"
-        console.log(url)
         if (fromLoc) {
             url = "https://api.skypicker.com/flights?flyFrom=" + fromLoc + "&to=" + airport + "&dateFrom=" + todayDate + "&dateTo=" + todayDate + "&partner=picky&v=3"
         }
@@ -30,7 +28,6 @@ export function CityFlightDetails({ city, airport, fromLoc }) {
         return date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear()
     };
 
-
     return (
         <div>
             {isLoading ? (<div> Loading ...</div >) : (
@@ -47,7 +44,6 @@ export function CityFlightDetails({ city, airport, fromLoc }) {
                                 <div>Departure:<span>{renderTime(item.dTime)}</span></div>
                                 <div>Price:<span>{item.price}</span></div>
                                 <div>Duration:<span>{item.fly_duration}</span></div>
-
                                 <hr />
                             </li>
                         ))}

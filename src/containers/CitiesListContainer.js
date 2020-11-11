@@ -21,7 +21,7 @@ export function CitiesListContainer() {
             id: 3,
             title: "Budapest",
             airport: "BUD",
-            key: 308526
+            key: 2140993
         }
     ]
 
@@ -34,7 +34,7 @@ export function CitiesListContainer() {
 
         return (
             <div>
-                <CityWeatherDetails key={city.id} city={city.title} />
+                <CityWeatherDetails key={city.id} city={city} />
                 <CityFlightDetails key={city.id} city={city.title} airport={city.airport} fromLoc={selectedValue} />
             </div>)
     }
