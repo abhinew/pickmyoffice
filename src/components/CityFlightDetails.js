@@ -4,7 +4,6 @@ import axios from 'axios';
 export function CityFlightDetails({ city, airport, fromLoc }) {
 
     const [data, setData] = useState(null);
-    const [startDates, setStartDates] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
