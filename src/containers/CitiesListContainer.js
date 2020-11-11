@@ -34,8 +34,8 @@ export function CitiesListContainer() {
 
         return (
             <div>
-                <CityWeatherDetails key={city.id} city={city} />
-                <CityFlightDetails key={city.id} city={city.title} airport={city.airport} fromLoc={"PRG"} />
+                <CityWeatherDetails key={city.id} city={city.title} />
+                <CityFlightDetails key={city.id} city={city.title} airport={city.airport} fromLoc={selectedValue} />
             </div>)
     }
     const displayInfo = () => {
@@ -48,11 +48,12 @@ export function CitiesListContainer() {
     return (
         <div className="container">
             <row>
-                From City:<select name="selectCity" id="selectBox" onChange={() => displayInfo()}>
+                Choose your city:<select name="selectCity" id="selectBox" onChange={() => displayInfo()}>
                     <option value="PRG">Prague</option>
                     <option value="CDG">Paris</option>
                     <option value="FRA">Frankfurt</option>
                 </select>
+
             </row>
 
             {

@@ -23,8 +23,9 @@ body {
 /* POKEMON APPLICATION
 =========================================== */
 .container {
+  width: 100vw ! important;
   display: flex;
-  max-width: 550px;
+  /* max-width: 550px; */
   margin: auto;
   flex-wrap: wrap;
   justify-content: space-between;

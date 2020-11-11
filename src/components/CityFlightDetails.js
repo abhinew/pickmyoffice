@@ -10,12 +10,12 @@ export function CityFlightDetails({ city, airport, fromLoc }) {
     useEffect(() => {
         let date = new Date();
         console.log(date)
-        let todayDate = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+        let todayDate = date.getDate() + "/" + Number(date.getMonth() + 1) + "/" + date.getFullYear();
         setIsLoading(true);
-        let url = "https://api.skypicker.com/flights?flyFrom=PRG&to=" + airport + "&dateFrom=11/11/2020&dateTo=11/11/2020&partner=picky&v=3"
+        let url = "https://api.skypicker.com/flights?flyFrom=PRG&to=" + airport + "&dateFrom=" + todayDate + "&dateTo=" + todayDate + "&partner=picky&v=3"
         console.log(url)
         if (fromLoc) {
-            url = "https://api.skypicker.com/flights?flyFrom=" + fromLoc + "&to=" + airport + "&dateFrom=11/11/2020&dateTo=11/11/2020&partner=picky&v=3"
+            url = "https://api.skypicker.com/flights?flyFrom=" + fromLoc + "&to=" + airport + "&dateFrom=" + todayDate + "&dateTo=" + todayDate + "&partner=picky&v=3"
         }
         axios.get(url).then(({ data }) => {
             setData(data);
@@ -31,19 +31,9 @@ export function CityFlightDetails({ city, airport, fromLoc }) {
         return date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear()
     };
 
-    // const changeFunction = function () {
-    //     var selectBox = document.getElementById("selectBox");
-    //     if (selectBox)
-    //         var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    //     console.log(selectedValue);
-    // }
-
-    // let setStartDate = function (date) {
-    //     console.log(date);
-    // }
 
     return (
-        <div className="row">
+        <div>
             {isLoading ? (<div> Loading ...</div >) : (
                 <div className="col-md-12" >
                     <div className="pokemon__name">
