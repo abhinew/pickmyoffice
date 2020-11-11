@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export function CityFlightDetails({ city }) {
+export function CityFlightDetails({ city, airport, fromLoc }) {
 
     const [data, setData] = useState(null);
+    //const [startDates, setStartDates] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         let isMounted = true;
         (() => {
+            let date = new Date();
+            let todayDate = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
             setIsLoading(true);
-            axios.get(
-                "https://api.skypicker.com/flights?flyFrom=PRG&to=AMS&dateFrom=06/11/2020&dateTo=06/11/2020&partner=picky&v=3"
-            ).then(data => {
+            let URL = "https://api.skypicker.com/flights?flyFrom=PRG&to=" + airport + "&dateFrom=" + todayDate + "&dateTo=" + todayDate + "&partner=picky&v=3"
+
+            if (fromLoc) {
+                URL = "https://api.skypicker.com/flights?flyFrom=" + fromLoc + "&to=" + airport + "&dateFrom=" + todayDate + "&dateTo=" + todayDate + "&partner=picky&v=3"
+            }
+            axios.get(URL).then(data => {
                 if (isMounted) {
                     console.log(data)
                     setData(data);
@@ -22,7 +28,7 @@ export function CityFlightDetails({ city }) {
 
         })();
         return () => { isMounted = false; };
-    }, []);
+    });
 
     let renderTime = function (epochTime) {
         let date = new Date(0)
@@ -30,20 +36,19 @@ export function CityFlightDetails({ city }) {
         return date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear()
     };
 
-    let changeFunction = function () {
-        var selectBox = document.getElementById("selectBox");
-        if (selectBox)
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-        //alert(selectedValue);
-    }
+    // const changeFunction = function () {
+    //     var selectBox = document.getElementById("selectBox");
+    //     if (selectBox)
+    //         var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    //     console.log(selectedValue);
+    // }
+
+    // let setStartDate = function (date) {
+    //     console.log(date);
+    // }
 
     return (
-        <div>
-            From City:<select id="selectBox" onChange={changeFunction()}>
-                <option value="PRG">Prague</option>
-                <option value="CDG">Paris</option>
-                <option value="FRA">Frankfurt</option>
-            </select>
+        <div class="row">
             {isLoading ? (<div> Loading ...</div >) : (
                 <div className="pokemon custWidth" >
                     <div className="pokemon__name">
@@ -53,10 +58,10 @@ export function CityFlightDetails({ city }) {
                         <span>{city.title}</span>
                         <span>{city.title}</span>
                     </div> */}
-                    <ul>
+                    <ul div class="col-md-12">
                         {data && data.data && data.data.data && data.data.data.map(item => (
 
-                            <li key={item.id}>
+                            <li key={item.id} class="col-md-4">
                                 <div>Arrival:<span>{renderTime(item.aTime)}</span></div>
                                 <div>Departure:<span>{renderTime(item.dTime)}</span></div>
                                 <div>Price:<span>{item.price}</span></div>
