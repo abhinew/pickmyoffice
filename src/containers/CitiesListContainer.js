@@ -7,17 +7,21 @@ export function CitiesListContainer() {
         {
             id: 1,
             title: "Amsterdam",
-            airport: "AMS"
+            airport: "AMS",
+            key: 2140993
+
         },
         {
             id: 2,
             title: "Madrid",
-            airport: "MAD"
+            airport: "MAD",
+            key: 308526
         },
         {
             id: 3,
             title: "Budapest",
-            airport: "BUD"
+            airport: "BUD",
+            key: 308526
         }
     ]
 
@@ -30,8 +34,8 @@ export function CitiesListContainer() {
 
         return (
             <div>
-                <CityWeatherDetails key={city.id} city={city.title} />
-                <CityFlightDetails key={city.id} city={city.title} airport={city.airport} fromLoc={selectedValue} />
+                <CityWeatherDetails key={city.id} city={city} />
+                <CityFlightDetails key={city.id} city={city.title} airport={city.airport} fromLoc={"PRG"} />
             </div>)
     }
     const displayInfo = () => {
@@ -52,7 +56,6 @@ export function CitiesListContainer() {
             </row>
 
             {
-
                 cities && cities.map(city => (
                     displayCitiesInformation(city)
                 ))}
