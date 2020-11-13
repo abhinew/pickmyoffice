@@ -10,7 +10,7 @@ export function CityWeatherDetails({ city }) {
         let key = city.key
         setIsLoading(true);
         axios.get(
-            "http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + key + "?apikey=8nObHWIFp1XgeVk4rZJw4rGS0wY1Dsly"
+            "https://dataservice.accuweather.com/forecasts/v1/daily/1day/" + key + "?apikey=8nObHWIFp1XgeVk4rZJw4rGS0wY1Dsly"
         ).then(({ data }) => {
             setData(data);
             setIsLoading(false);
